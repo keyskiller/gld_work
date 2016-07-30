@@ -1515,7 +1515,7 @@ DTI.Borders.InsideLineStyle='wdLineStyleSingle';
 DTI.Rows.Alignment='wdAlignRowCenter';
 
 column_width=510;
-row_height=[315,315 ];
+row_height=[325,325 ];
 
     DTI.Columns.Item(1).Width =column_width;
 
@@ -1532,6 +1532,11 @@ end
   DTI.Cell(1, 1).Range.Text = '驾驶员身份证明复印件';
   DTI.Cell(2, 1).Range.Text = '车辆身份证明复印件';
 
+  end_of_doc = get(content,'end');
+  set(selection,'Start',end_of_doc);
+  selection.MoveDown;
+  selection.TypeParagraph;
+  
   
 function edit1_Callback(hObject, eventdata, handles)
 % hObject    handle to edit1 (see GCBO)
