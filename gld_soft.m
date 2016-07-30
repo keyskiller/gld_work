@@ -243,6 +243,10 @@ for i = 1 : 4
         DTI.Cell(i, j).VerticalAlignment='wdCellAlignVerticalCenter';
     end
 end
+
+
+
+
 % DTI.Cell(4,1).Range.ParagraphFormat.Alignment='wdAlignParagraphLeft';
  DTI.Cell(1, 1).Merge(DTI.Cell(4, 1));
  DTI.Cell(1, 2).Merge(DTI.Cell(2, 2));
@@ -449,7 +453,7 @@ end
   DTI.Cell(2, 1).Range.Text = '案由';
   DTI.Cell(2, 2).Range.Text = '涉嫌擅自超限运输行驶公路案';
   DTI.Cell(2, 2).Range.Font.Size = 13 ;%给该单元格改字体大小
-  DTI.Cell(2, 2).Range.Font.Bold = 2 ;%给该单元格改字体大小
+  DTI.Cell(2, 2).Range.Font.Bold = 2 ;%给该单元格字体粗细
   DTI.Cell(3, 1).Range.Text = '当事人基本情况';
   DTI.Cell(3, 2).Range.Text = '公民';
   DTI.Cell(3, 3).Range.Text = '姓名';
@@ -1538,6 +1542,203 @@ end
   selection.TypeParagraph;
   
   
+  
+  
+  
+  %% 第10页开始
+  
+  end_of_doc = get(content,'end');
+  set(selection,'Start',end_of_doc);
+  
+  text_temp='案件处理意见书';
+  set(selection, 'Text',text_temp);
+  
+  selection.Font.Size=15;%设置文本字体大小
+  selection.Font.Bold=4;%设置文本粗体
+  set(paragraphformat, 'LineSpacing',23);
+  set(paragraphformat, 'Alignment','wdAlignParagraphCenter');
+  
+  end_of_doc = get(content,'end');
+  set(selection,'Start',end_of_doc);
+  selection.MoveDown;
+  selection.TypeParagraph;
+  selection.TypeParagraph;
+  
+      %开始画第九页的图
+  selection.Font.Bold=0;%设置文本粗体
+  selection.Font.underline = 0;
+  selection.Font.Size=15;%设置文本字体大小
+  Tables=document.Tables.Add(selection.Range,18,8);
+ 
+%设置边框
+DTI=document.Tables.Item(9);
+DTI.Borders.OutsideLineStyle='wdLineStyleSingle';
+% DTI.Borders.OutsideLineWidth='wdLineWidth150pt';
+DTI.Borders.InsideLineStyle='wdLineStyleSingle';
+% DTI.Borders.InsideLineWidth='wdLineWidth150pt';
+DTI.Rows.Alignment='wdAlignRowCenter';
+
+column_width=[50,50,80,70,60,60,50,70];
+row_height=[50, 40, 40,  35, 35, 35, 35, 140 , 40,25,25,25,25,25,25, 240,240,240];%18行
+for i=1:8
+    DTI.Columns.Item(i).Width =column_width(i);
+end
+for i=1:18
+    DTI.Rows.Item(i).Height =row_height(i);
+end
+for i = 1 : 18
+    for j = 1 : 8
+        DTI.Cell(i, j).Range.ParagraphFormat.Alignment='wdAlignParagraphCenter';
+        DTI.Cell(i, j).VerticalAlignment='wdCellAlignVerticalCenter';
+    end
+end
+% 
+  DTI.Cell(1, 2).Merge(DTI.Cell(1, 5));
+  DTI.Cell(1, 3).Merge(DTI.Cell(1, 4));
+  DTI.Cell(2, 1).Merge(DTI.Cell(7, 1));
+  DTI.Cell(2, 2).Merge(DTI.Cell(3, 2));
+  DTI.Cell(4, 2).Merge(DTI.Cell(7, 2));
+  DTI.Cell(3, 4).Merge(DTI.Cell(3, 6));
+  DTI.Cell(4, 3).Merge(DTI.Cell(4, 4));
+  DTI.Cell(4, 4).Merge(DTI.Cell(4, 7));
+  DTI.Cell(5, 3).Merge(DTI.Cell(5, 4));
+  DTI.Cell(5, 4).Merge(DTI.Cell(5, 7));
+  DTI.Cell(6, 3).Merge(DTI.Cell(6, 4));
+  DTI.Cell(6, 4).Merge(DTI.Cell(6, 7));
+  DTI.Cell(7, 3).Merge(DTI.Cell(7, 4));
+  DTI.Cell(7, 4).Merge(DTI.Cell(7, 7));
+  DTI.Cell(8, 2).Merge(DTI.Cell(8, 8));
+  DTI.Cell(9, 1).Merge(DTI.Cell(15, 1));
+  DTI.Cell(9, 3).Merge(DTI.Cell(9, 4));
+  DTI.Cell(9, 4).Merge(DTI.Cell(9, 6));
+  DTI.Cell(10, 3).Merge(DTI.Cell(10, 4));
+  DTI.Cell(10, 4).Merge(DTI.Cell(10, 6));
+  DTI.Cell(11, 3).Merge(DTI.Cell(11, 4));
+  DTI.Cell(11, 4).Merge(DTI.Cell(11, 6));
+  DTI.Cell(12, 3).Merge(DTI.Cell(12, 4));
+  DTI.Cell(12, 4).Merge(DTI.Cell(12, 6));
+  DTI.Cell(13, 3).Merge(DTI.Cell(13, 4));
+  DTI.Cell(13, 4).Merge(DTI.Cell(13, 6));
+  DTI.Cell(14, 3).Merge(DTI.Cell(14, 4));
+  DTI.Cell(14, 4).Merge(DTI.Cell(14, 6));
+  DTI.Cell(15, 3).Merge(DTI.Cell(15, 4));
+  DTI.Cell(15, 4).Merge(DTI.Cell(15, 6));
+  DTI.Cell(16, 2).Merge(DTI.Cell(16, 8));
+  DTI.Cell(17, 2).Merge(DTI.Cell(17, 8));
+  DTI.Cell(18, 2).Merge(DTI.Cell(18, 8));
+
+
+   DTI.Cell(1, 1).Range.Text = '案由';
+   DTI.Cell(1, 2).Range.Text = '涉嫌擅自超限运输行驶公路案';
+   DTI.Cell(1, 2).Range.Font.Size = 13 ;%给该单元格改字体大小
+   DTI.Cell(1, 2).Range.Font.Bold = 2 ;%给该单元格改字体大小
+   DTI.Cell(1, 3).Range.Text = '案件调查人员';
+   DTI.Cell(2, 1).Range.Text = '当事人信息';
+   DTI.Cell(2, 2).Range.Text = '公民';
+   DTI.Cell(2, 3).Range.Text = '姓名';
+   DTI.Cell(2, 5).Range.Text = '性别';
+   DTI.Cell(2, 7).Range.Text = '年龄';
+   DTI.Cell(3, 3).Range.Text = '住址';
+   DTI.Cell(3, 5).Range.Text = '职业';
+   DTI.Cell(4, 2).Range.Text = '法人或其他组织';
+   DTI.Cell(4, 3).Range.Text = '名称';
+   DTI.Cell(5, 3).Range.Text = '法定代表人';
+   DTI.Cell(6, 3).Range.Text = '地址';
+   DTI.Cell(7, 3).Range.Text = '联系电话';
+   DTI.Cell(8, 1).Range.Text = '案件调查经过及违法事实';
+   DTI.Cell(8, 2).Range.Text =[ '       年  月  日   时   分，当阳市公路管理局路政员       、              在例行检测中发现驾驶员      驾驶                     牌号为           的运输车辆涉嫌擅自超限运输行驶公路。当即对所驾驶的运输车辆依法进行了检测，制作了《检测磅单》、《现场笔录》;同日予以立案。路政员         、         在S311省道K234+650处对           进行了调查询问，制作了《询问笔录》。当事人            所驾驶的车辆类型为     轴       车，运载货物为        ，从        运往       ，经检测车货总重      吨（米），根据《全国统一治理超限超载期间认定车辆超限超载标准》认定该车超限      吨 （米），驾驶员       对违法事实予以承认。'];
+   DTI.Cell(8, 2).Range.Font.Size = 12 ;%给该单元格改字体大小
+   DTI.Cell(8, 2).Range.Font.Bold = 2 ;%给该单元格改字体大小
+   DTI.Cell(8, 2).Range.ParagraphFormat.LineSpacing =20;
+   DTI.Cell(9, 1).Range.Text = '证据材料';
+   DTI.Cell(9, 2).Range.Text = '序号';
+   DTI.Cell(9, 3).Range.Text = '证据名称';
+   DTI.Cell(9, 4).Range.Text = '规格';
+   DTI.Cell(9, 5).Range.Text = '数量';
+   DTI.Cell(10, 2).Range.Text = '1';
+   DTI.Cell(10, 2).Range.Font.Size = 12 ;%给该单元格改字体大小
+   DTI.Cell(10, 2).Range.Font.Bold = 2 ;%给该单元格改字体大小
+   DTI.Cell(10, 3).Range.Text = '《现场笔录》';
+   DTI.Cell(10, 3).Range.Font.Size = 12 ;%给该单元格改字体大小
+   DTI.Cell(10, 3).Range.Font.Bold = 2 ;%给该单元格改字体大小
+   DTI.Cell(10, 4).Range.Text = 'A4';
+   DTI.Cell(10, 4).Range.Font.Size = 12 ;%给该单元格改字体大小
+   DTI.Cell(10, 4).Range.Font.Bold = 2 ;%给该单元格改字体大小
+   DTI.Cell(10, 5).Range.Text = '1';
+   DTI.Cell(10, 5).Range.Font.Size = 12 ;%给该单元格改字体大小
+   DTI.Cell(10, 5).Range.Font.Bold = 2 ;%给该单元格改字体大小
+   DTI.Cell(11, 2).Range.Text = '2';
+   DTI.Cell(11, 2).Range.Font.Size = 12 ;%给该单元格改字体大小
+   DTI.Cell(11, 2).Range.Font.Bold = 2 ;%给该单元格改字体大小
+   DTI.Cell(11, 3).Range.Text = '《询问笔录》';
+   DTI.Cell(11, 3).Range.Font.Size = 12 ;%给该单元格改字体大小
+   DTI.Cell(11, 3).Range.Font.Bold = 2 ;%给该单元格改字体大小
+   DTI.Cell(11, 4).Range.Text = 'A4';
+   DTI.Cell(11, 4).Range.Font.Size = 12 ;%给该单元格改字体大小
+   DTI.Cell(11, 4).Range.Font.Bold = 2 ;%给该单元格改字体大小
+   DTI.Cell(11, 5).Range.Text = '1';
+   DTI.Cell(11, 5).Range.Font.Size = 12 ;%给该单元格改字体大小
+   DTI.Cell(11, 5).Range.Font.Bold = 2 ;%给该单元格改字体大小
+   DTI.Cell(12, 2).Range.Text = '3';
+   DTI.Cell(12, 2).Range.Font.Size = 12 ;%给该单元格改字体大小
+   DTI.Cell(12, 2).Range.Font.Bold = 2 ;%给该单元格改字体大小
+   DTI.Cell(12, 3).Range.Text = '《检测磅单》';
+   DTI.Cell(12, 3).Range.Font.Size = 12 ;%给该单元格改字体大小
+   DTI.Cell(12, 3).Range.Font.Bold = 2 ;%给该单元格改字体大小
+   DTI.Cell(12, 4).Range.Text = '/';
+   DTI.Cell(12, 4).Range.Font.Size = 12 ;%给该单元格改字体大小
+   DTI.Cell(12, 4).Range.Font.Bold = 2 ;%给该单元格改字体大小
+   DTI.Cell(12, 5).Range.Text = '1';
+   DTI.Cell(12, 5).Range.Font.Size = 12 ;%给该单元格改字体大小
+   DTI.Cell(12, 5).Range.Font.Bold = 2 ;%给该单元格改字体大小
+   DTI.Cell(13, 2).Range.Text = '4';
+   DTI.Cell(13, 2).Range.Font.Size = 12 ;%给该单元格改字体大小
+   DTI.Cell(13, 2).Range.Font.Bold = 2 ;%给该单元格改字体大小
+   DTI.Cell(13, 3).Range.Text = '《驾驶员身份复印件》';
+   DTI.Cell(13, 3).Range.Font.Size = 12 ;%给该单元格改字体大小
+   DTI.Cell(13, 3).Range.Font.Bold = 2 ;%给该单元格改字体大小
+   DTI.Cell(13, 4).Range.Text = '/';
+   DTI.Cell(13, 4).Range.Font.Size = 12 ;%给该单元格改字体大小
+   DTI.Cell(13, 4).Range.Font.Bold = 2 ;%给该单元格改字体大小
+   DTI.Cell(13, 5).Range.Text = '1';
+   DTI.Cell(13, 5).Range.Font.Size = 12 ;%给该单元格改字体大小
+   DTI.Cell(13, 5).Range.Font.Bold = 2 ;%给该单元格改字体大小
+   DTI.Cell(14, 2).Range.Text = '5';
+   DTI.Cell(14, 2).Range.Font.Size = 12 ;%给该单元格改字体大小
+   DTI.Cell(14, 2).Range.Font.Bold = 2 ;%给该单元格改字体大小
+   DTI.Cell(14, 3).Range.Text = '《车辆身份复印件》';
+   DTI.Cell(14, 3).Range.Font.Size = 12 ;%给该单元格改字体大小
+   DTI.Cell(14, 3).Range.Font.Bold = 2 ;%给该单元格改字体大小
+   DTI.Cell(14, 4).Range.Text = '/';
+   DTI.Cell(14, 4).Range.Font.Size = 12 ;%给该单元格改字体大小
+   DTI.Cell(14, 4).Range.Font.Bold = 2 ;%给该单元格改字体大小
+   DTI.Cell(14, 5).Range.Text = '1';  
+   DTI.Cell(14, 5).Range.Font.Size = 12 ;%给该单元格改字体大小
+   DTI.Cell(14, 5).Range.Font.Bold = 2 ;%给该单元格改字体大小
+   DTI.Cell(16, 1).Range.Text = '调查结论和处理意见';  
+   
+%    text_temp='案件处理意见书';
+%    set(selection, 'Text',text_temp);
+%   end_of_doc = get(content,'end');
+%      selection.Font.Size=15;%设置文本字体大小
+%    selection.Font.Bold=4;%设置文本粗体
+%   set(selection,'Start',end_of_doc);
+%   selection.MoveDown;
+%   selection.TypeParagraph;
+%   
+%      text_temp1='案件处理意见书';
+%    set(selection, 'Text',text_temp1);
+%   end_of_doc = get(content,'end');
+%      selection.Font.Size=13;%设置文本字体大小
+%    selection.Font.Bold=0;%设置文本粗体
+%   set(selection,'Start',end_of_doc);
+%   selection.MoveDown;
+%   selection.TypeParagraph;
+%   
+
+%    DTI.Cell(15, 2).Range.Text = [text_temp,text_temp1];
+   
+   
 function edit1_Callback(hObject, eventdata, handles)
 % hObject    handle to edit1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
